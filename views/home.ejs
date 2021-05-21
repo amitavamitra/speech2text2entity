@@ -1,0 +1,59 @@
+<%- include('partials/header'); -%>
+
+<body>
+
+     <!-- Check Deployment is running -->
+    <!-- <form action="/serve" method="post">
+        <input type="text" name="deploymentID" id="">
+        <button type="submit">CheckDeployment</button>
+    </form> -->
+    <br>
+    <!-- two part box one for text input and other for entities 
+    and its values -->
+    <div class="overflow-auto" class="container">
+        
+        <div class="row">
+           
+          <div class="col-sm-6" style="background-color: #1abc9c;">
+            <h1>Text</h1>
+            <form action="/infer" method="post">
+                <textarea name="text" cols="75" rows="10" id=""><%=text%></textarea>
+                <button type="submit">GetEntities</button>
+                <br>
+            </form>
+          </div>
+          
+          <div   class="col-sm-6" style="background-color : #1abc9c;">
+            <h1>Entity</h1>
+            <table  class="table  tableFixHead   table-scroll">
+                <thead>
+                  <tr>
+                    <th>Entity</th>
+                    <th>Value</th>
+                    <th>Correction</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%for(i = 0 ; i < entity.length ; i ++){%>
+                  <tr>
+                    <td><%=entity[i]%></td>
+                    <td><%=value[i]%></td>                   
+                    <td></td>
+                  </tr>
+                  <%}%>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+      <br><br><br><br>
+
+      <div>
+      <form action="/s4api" method="post">
+        <button type="submit">Send-to-S4</button>
+        
+    </form>
+      
+  </div>
+
+</body>

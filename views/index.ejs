@@ -1,0 +1,127 @@
+<%- include('partials/head.ejs'); -%>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Speech2Text2Entity2S4</title>
+    <meta name="description" content="Speech2Text2Entity2S4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"> -->
+</head>
+<h1  style="background-color:#87cefa;">Action with Voice</h1>
+<body  id="form-body" style="background-color: #87cefa;">
+        <hr>
+   
+
+      
+        <div class="col-sm-6 overflow-y" >
+            <h3>Transcription</h3>
+          <!-- <textarea name="ResultText" id="ResultText" cols="120" rows="10">
+            <span class="greyText">No Speech to Text yet<span>
+          </textarea> -->
+            <p id="ResultText">
+                <span class="greyText">No Speech to Text yet<span>
+            </p>
+        <button id="startRecButton" type="button" <i class="btn-lg btn-primary fas fa-microphone-alt"></i>Start Recording</i></button>
+        <button id="stopRecButton" type="button" <i class="btn btn-danger btn-lg  fas fa-microphone-slash"></i  > Stop recording</button>
+        <button id="finaliseTranscription" type="button"<i class="btn-lg btn-info fab fa-get-pocket"></i>Get Transcript</button>
+        </div>
+    
+        <hr>
+    
+        <div class="row">
+            <div class="col-lg-6 overflow-y">
+             <h3>Text</h3>
+                 <!-- <textarea name="transcript" id="transcript" cols="100" rows="10"></textarea>     -->
+          
+                    <form action="/infer" method="post">
+                        <textarea name="transcript" id="transcript" cols="100" rows="10"><%=text%></textarea>  
+                        <br>
+                    <button  id="getEntities" type="submit"<i class="btn-lg btn-success fas fa-brain"></i>Extract Entities</button>
+                    </form>             
+            </div>
+    
+        <div   class="col-lg-6  overflow-y">
+                <h3>Entity</h3>
+               
+                    <table  border="1"  id='tbl'   class="table table-bordered  tableFixHead   table-scroll">
+                    <thead class="thead-dark" >
+                    <tr>
+                        <th>Entity</th>
+                        <th>Value</th>
+                        <th>Correction</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%for(i = 0 ; i < entity.length ; i ++){%>
+                    <tr>
+                        <td><%=entity[i]%></td>
+                        <td><%=value[i]%></td>                   
+                        <td></td>
+                    </tr>
+                    <%}%>
+                    </tbody>
+                </table>
+                <div>
+                    <form action="/s4api" method="post">
+                       <button  type="submit"<i class="btn-lg btn-success fas fa-paper-plane"></i>Send-to-S4</button>
+                       </form>
+                 </div>
+        </div>
+        
+    </div>
+  
+  <!-- <br><br><br><br> -->
+
+        
+</div>
+
+<div class="wrapper ">  
+    <audio></audio>
+
+   
+    <div id="recordingStatus">&nbsp;</div>
+    </div>  
+</div>
+
+    <!-- Nlp -->
+    <script src="https://unpkg.com/compromise@11.14.3/builds/compromise.min.js"></script>
+    <!-- Socket -->
+    <script src="/js/socket.io.js"></script>
+    <!-- Client -->
+    <script src="/js/client.js"></script>
+    <script>
+        function main(){
+
+      
+var table = document.getElementById('tbl');
+
+for (var i = 1; i < 10; i++){
+    var tr = document.createElement('tr');   
+
+    var td1 = document.createElement('td');
+    td1.setAttribute('contentEditable', 'true');
+    var td2 = document.createElement('td');
+    td2.setAttribute('contentEditable', 'true');
+    var td3 = document.createElement('td');
+    td3.setAttribute('contentEditable', 'true');
+
+    var text1 = document.createTextNode('');
+    var text2 = document.createTextNode('');
+
+    td1.appendChild(text1);
+    td2.appendChild(text2);
+    td3.appendChild(text1);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    table.appendChild(tr);
+}
+// document.body.appendChild(table);
+}
+    </script>
+    </body>
+
+</html>

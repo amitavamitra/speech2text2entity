@@ -1,0 +1,21 @@
+Lenovo Yoga-5611 is an amazing laptop. The new product is of length 1000cm ,width 645 cm and height of 436 cm. The net and gross weights are 1 and 1.2 KG respectively.
+The EAN code is 55324324324387. The lead time is around 20 days from confirmation of a firm order.
+
+
+
+body :  {
+  configurationId: '87c4fcd8-d050-4bbe-bd52-923b0befd38e',
+  configurationName: 'materialbasicdataserve',
+  deploymentDescription:'Product Master',
+  createdAt: '2021-05-12T10:39:52Z',
+  deploymentUrl: 'https://d684ab99b148a2ef-rg-aeb65ab8-cd927cab.serving.internalprod.eu-central-1.aws.ml.hana.ondemand.com',
+  id: 'd684ab99b148a2ef',
+  modifiedAt: '2021-05-12T10:40:55Z',
+  scenarioId: 'materialbasicdataserve',
+  status: 'RUNNING',
+  targetStatus: 'RUNNING'
+}
+
+Table DOM - awesome
+https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
+
